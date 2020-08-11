@@ -1,0 +1,13 @@
+.dockerignore
+.editorconfig
+.eslintrc.js
+.git
+.gitignore
+.nvmrc
+.prettierignore
+.prettierrc
+.yarnrc
+
+**/node_modules
+
+README.md

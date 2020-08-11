@@ -1,0 +1,28 @@
+# ignore all "dot" files
+.*
+.**/**
+
+# whitelist desired "dot" files
+!.dockerignore
+!.editorconfig
+!.env
+!.eslintignore
+!.eslintrc.js
+!.gitignore
+!.gitkeep
+!.nvmrc
+!.prettierignore
+!.prettierrc
+!.yarnrc
+
+# excluded directories
+coverage/
+dist/
+node_modules/
+
+# competing package manager lock files
+package-lock.json
+
+# ignore npm/yarn debug files
+npm-debug.log
+yarn-error.log

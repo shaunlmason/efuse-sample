@@ -1,0 +1,86 @@
+tags:
+  - name: post
+    description: Post Endpoints
+  - name: user
+    description: User Endpoints
+
+paths:
+  /user/{id}:
+    # [GET] user/id
+    get:
+      tags:
+        - user
+      summary: Retrieve a user
+      responses:
+        200:
+          description: 'OK'
+        500:
+          description: 'Server Error'
+    # [PATCH] user/id
+    patch:
+      tags:
+        - user
+      summary: Update a subset of fields for a given user
+      responses:
+        200:
+          description: 'OK'
+        500:
+          description: 'Server Error'
+
+  /user:
+    # [POST] user
+    post:
+      tags:
+        - user
+      summary: Create a new user
+      responses:
+        200:
+          description: 'OK'
+        500:
+          description: 'Server Error'
+
+  /user/{id}/posts:
+    # [GET] user/id/posts
+    get:
+      tags:
+        - user
+      summary: Return posts for a user
+      responses:
+        200:
+          description: 'OK'
+        500:
+          description: 'Server Error'
+
+  /post/{id}:
+    # [GET] post/id
+    get:
+      tags:
+        - post
+      summary: Retrieve a post
+      responses:
+        200:
+          description: 'OK'
+        500:
+          description: 'Server Error'
+    # [PATCH] post/id
+    patch:
+      tags:
+        - post
+      summary: Update a subset of fields for a given post
+      responses:
+        200:
+          description: 'OK'
+        500:
+          description: 'Server Error'
+
+  /post:
+    # [POST] post
+    post:
+      tags:
+        - post
+      summary: Create a new post
+      responses:
+        200:
+          description: 'OK'
+        500:
+          description: 'Server Error'
