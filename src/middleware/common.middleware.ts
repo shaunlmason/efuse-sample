@@ -7,6 +7,7 @@ import helmet from 'helmet';
 import hpp from 'hpp';
 import logger from 'morgan';
 
+/* eslint-disable @typescript-eslint/no-unused-vars */
 export const handleBodyRequestParsing = (router: Router, env: boolean) => {
     router.use(bodyParser.urlencoded({ extended: true }));
     router.use(bodyParser.json());

@@ -27,7 +27,7 @@ export class UserController {
     };
 
     public delete = async (req: Request, res: Response, next: NextFunction) => {
-        const id: string = req.params.id;
+        const { id } = req.params;
         const key: string = USER_KEY_PREFIX + id;
 
         try {
@@ -42,13 +42,13 @@ export class UserController {
 
     public get = [
         (req: Request, res: Response, next: NextFunction) => {
-            const id: string = req.params.id;
+            const { id } = req.params;
             const key: string = USER_KEY_PREFIX + id;
 
             getFromCache(key, 'get', res, next);
         },
         async (req: Request, res: Response, next: NextFunction) => {
-            const id: string = req.params.id;
+            const { id } = req.params;
             const key: string = USER_KEY_PREFIX + id;
 
             try {
@@ -64,14 +64,14 @@ export class UserController {
 
     public getPosts = [
         (req: Request, res: Response, next: NextFunction) => {
-            const id: string = req.params.id;
+            const { id } = req.params;
             const key = USER_POSTS_KEY_PREFIX + id;
 
             cache.hgetall(key, (err: any, value: { [key: string]: string }) => {
                 if (value) {
                     const entries: IPost[] = [];
-                    Object.keys(value).forEach((key: string) => {
-                        entries.push(JSON.parse(value[key]));
+                    Object.keys(value).forEach((k: string) => {
+                        entries.push(JSON.parse(value[k]));
                     });
 
                     res.status(200).json({ data: entries, message: 'getPosts' });
@@ -81,7 +81,7 @@ export class UserController {
             });
         },
         async (req: Request, res: Response, next: NextFunction) => {
-            const id: string = req.params.id;
+            const { id } = req.params;
 
             try {
                 const posts: IPost[] = await this.postService.findByUserId(id);
@@ -95,13 +95,13 @@ export class UserController {
 
     public update = async (req: Request, res: Response, next: NextFunction) => {
         const incoming: IUser = req.body;
-        const id: string = req.params.id;
+        const { id } = req.params;
         const key: string = USER_KEY_PREFIX + id;
 
         try {
             const users: IUser[] = await this.userService.update(id, incoming);
 
-            if (users && users.length == 1) {
+            if (users && users.length === 1) {
                 cache.set(key, JSON.stringify(users[0]));
             }
 

@@ -16,6 +16,6 @@
     "target": "es6",
     "typeRoots": ["./node_modules/@types"]
   },
-  "exclude": ["node_modules", "**/__mocks__", "**/__tests__", "**/*.spec.ts"],
+  "exclude": ["node_modules"],
   "include": ["src/**/*.ts"]
 }

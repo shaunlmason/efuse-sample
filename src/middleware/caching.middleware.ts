@@ -6,10 +6,10 @@ import { cache } from '../config/cache';
 const getAsync = promisify(cache.get).bind(cache);
 
 export const getFromCache = async (key: string, message: string, res: Response, next: NextFunction) => {
-    let data = await getAsync(key);
+    const data = await getAsync(key);
 
     if (data) {
-        res.status(200).json({ data: JSON.parse(data), message: message });
+        res.status(200).json({ data: JSON.parse(data), message });
     } else {
         next();
     }

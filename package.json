@@ -15,6 +15,7 @@
     "url": "https://github.com/shaunlmason/efuse-sample.git"
   },
   "dependencies": {
+    "body-parser": "1.19.0",
     "class-transformer": "0.3.1",
     "class-validator": "0.12.2",
     "compression": "1.7.4",
@@ -67,7 +68,7 @@
     "build": "tsc --project ./tsconfig.json",
     "clean": "rm -rf ./dist",
     "destroy": "rm -rf ./node_modules",
-    "lint": "eslint --ext .ts",
+    "lint": "eslint --ext .ts ./ --fix",
     "serve": "cross-env NODE_ENV=development nodemon --watch src --delay 1 --exec 'ts-node' src/server.ts",
     "start": "cross-env NODE_ENV=production ts-node --transpile-only src/server.ts",
     "test": "jest --forceExit --detectOpenHandles --verbose --silent"

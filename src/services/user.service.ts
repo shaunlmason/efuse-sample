@@ -5,11 +5,12 @@ import { IUser } from '../interfaces/user';
 import { UserEntity } from '../entities/user.entity';
 import UserModel from '../models/user.model';
 
+/* eslint-disable class-methods-use-this */
 export class UserService {
     private users = UserModel;
 
     public async all(): Promise<IUser[]> {
-        return UserModel.find();
+        return this.users.find();
     }
 
     public async create(user: UserEntity): Promise<IUser> {

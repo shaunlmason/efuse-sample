@@ -5,11 +5,12 @@ import { IPost } from '../interfaces/post';
 import { PostEntity } from '../entities/post.entity';
 import PostModel from '../models/post.model';
 
+/* eslint-disable class-methods-use-this */
 export class PostService {
     private posts = PostModel;
 
     public async all(): Promise<IPost[]> {
-        return PostModel.find();
+        return this.posts.find();
     }
 
     public async create(post: PostEntity): Promise<IPost> {

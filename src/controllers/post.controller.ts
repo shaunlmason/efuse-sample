@@ -27,14 +27,14 @@ export class PostController {
     };
 
     public delete = async (req: Request, res: Response, next: NextFunction) => {
-        const id: string = req.params.id;
+        const { id } = req.params;
         const key: string = POST_KEY_PREFIX + id;
 
         try {
             const posts: IPost[] = await this.service.delete(id);
 
             cache.del(key);
-            if (posts && posts.length == 1) {
+            if (posts && posts.length === 1) {
                 const userKey = USER_POSTS_KEY_PREFIX + posts[0].user;
                 cache.hdel(userKey, posts[0]._id);
             }
@@ -47,13 +47,13 @@ export class PostController {
 
     public get = [
         (req: Request, res: Response, next: NextFunction) => {
-            const id: string = req.params.id;
+            const { id } = req.params;
             const key: string = POST_KEY_PREFIX + id;
 
             getFromCache(key, 'get', res, next);
         },
         async (req: Request, res: Response, next: NextFunction) => {
-            const id: string = req.params.id;
+            const { id } = req.params;
             const key: string = POST_KEY_PREFIX + id;
 
             try {
@@ -69,14 +69,15 @@ export class PostController {
 
     public update = async (req: Request, res: Response, next: NextFunction) => {
         const incoming: IPost = req.body;
-        const id: string = req.params.id;
+        const { id } = req.params;
         const key: string = POST_KEY_PREFIX + id;
 
         try {
             const posts: IPost[] = await this.service.update(id, incoming);
 
-            if (posts && posts.length == 1) {
+            if (posts && posts.length === 1) {
                 const userKey = USER_POSTS_KEY_PREFIX + posts[0].user;
+
                 cache.set(key, JSON.stringify(posts[0]));
                 cache.hmset(userKey, [posts[0]._id, JSON.stringify(posts[0])]);
             }
