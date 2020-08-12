@@ -6,6 +6,23 @@ cd "$(dirname "$0")"
 
 echo '▸ Installing dependencies...';
 
+echo '  ▸ Checking MongoDB...'
+if ! command -v mongod > /dev/null; then
+  echo 'ERROR: please install mongodb before continuing';
+  exit 1;
+fi
+
+if ! command -v mongo > /dev/null; then
+  echo 'ERROR: please install mongodb before continuing';
+  exit 1;
+fi
+
+echo '  ▸ Checking Redis...'
+if ! command -v redis-server > /dev/null; then
+  echo 'ERROR: please install redis before continuing';
+  exit 1;
+fi
+
 # verify docker
 echo '  ▸ Checking Docker...'
 if ! command -v docker > /dev/null; then
@@ -21,7 +38,7 @@ if ! command -v node > /dev/null; then
 fi
 
 # verify yarn
-echo '  ▸ Checking yarn...'
+echo '  ▸ Checking Yarn...'
 if ! command -v yarn > /dev/null; then
   echo 'ERROR: please install yarn before continuing';
   exit 1;
